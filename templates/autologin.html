@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Connection</title>
+</head>
+<body>
+
+    <p id="loader"></p>
+    <script>
+        document.getElementById('loader').textContent = "Connexion en cours…";
+        setTimeout(() => {
+            document.forms[0].submit();
+        }, 500); 
+    </script>
+
+    <form method="POST" action="{{ login_url }}">
+        <input type="hidden" name="pwd" value="{{ password }}">
+        <input type="hidden" name="submt" value="">
+    </form>
+
+</body>
+</html>

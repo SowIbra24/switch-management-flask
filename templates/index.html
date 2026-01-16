@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+<head>
+    <title>Management des switchs du CNAM-ARA</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <h1>Portail des switch</h1>
+
+    {% for site, sws in switches.items() %}
+        <h2>{{ site }}</h2>
+        <ul>
+        {% for sw in sws %}
+            <li>
+                {{ sw.title }}
+                <a href="/connect/{{ sw.title }}">Connection</a>
+            </li>
+        {% endfor %}
+        </ul>
+    {% endfor %}
+</body>
+</html>
