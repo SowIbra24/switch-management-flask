@@ -1,0 +1,16 @@
+services:
+  management:
+    build: .
+    container_name: management-switch
+    ports:
+      - "5000:5000"
+    env_file:
+      - .env
+    volumes:
+      - ./data:/data:ro
+    secrets:
+      - db.key
+ 
+secrets:
+  db.key:
+    file: ./secrets/db.key
