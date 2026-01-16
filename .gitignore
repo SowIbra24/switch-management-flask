@@ -2,4 +2,4 @@ secrets/
 data/
 venv/
 .env
-app/__pycache___
+app/__pycache__/*
