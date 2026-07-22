@@ -1,7 +1,7 @@
 
 import os 
 from flask import Flask, render_template # pyright: ignore[reportMissingImports]
-from keepass_service import get_all_switches, get_switch_by_name
+from app.keepass_service import get_all_switches, get_switch_by_name
 
 
 template_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../templates")

@@ -10,5 +10,6 @@ COPY data data/
 COPY templates templates/
 COPY static static/
 
+EXPOSE 5000
 
-CMD ["python", "app/main.py"]
+CMD ["gunicorn", "--bind", "0.0.0.0:5000", "--workers", "3", "app.main:app"]

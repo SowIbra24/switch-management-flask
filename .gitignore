@@ -3,3 +3,6 @@ data/
 venv/
 .env
 app/__pycache__/*
+mdp
+nginx/certs/*
+nginx/.htpasswd
