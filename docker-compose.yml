@@ -2,14 +2,28 @@ services:
   management:
     build: .
     container_name: management-switch
-    ports:
-      - "5000:5000"
     env_file:
       - .env
+    expose:
+      - "5000"
     volumes:
       - ./data:/data:ro
     secrets:
       - db.key
+
+  nginx:
+    image: nginx:alpine
+    container_name: nginx-switch
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro
+      - ./nginx/certs:/etc/nginx/certs:ro
+      - ./nginx/.htpasswd:/etc/nginx/.htpasswd:ro
+    depends_on:
+      - management
  
 secrets:
   db.key:
