@@ -10,9 +10,6 @@ KEEPASS_KEY_PATH = os.getenv("KEEPASS_KEY_PATH")
 SITES = os.getenv("SITES","").split(',')
 SWITCH_REGEX = os.getenv("SWITCH_REGEX")
 
-for key, value in os.environ.items():
-    print(f"{key}={value}")
-
 def open_database():
     return PyKeePass(
         KEEPASS_DB_PATH,
