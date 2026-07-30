@@ -27,5 +27,3 @@ def connect(switch_name):
         login_url=login_url,
         password=entry.password)
 
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)

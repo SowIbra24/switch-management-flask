@@ -9,7 +9,7 @@ COPY app app/
 COPY data data/
 COPY templates templates/
 COPY static static/
+COPY nginx nginx/
 
-EXPOSE 5000
 
 CMD ["gunicorn", "--bind", "0.0.0.0:5000", "--workers", "3", "app.main:app"]
