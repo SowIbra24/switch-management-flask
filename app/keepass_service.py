@@ -1,3 +1,4 @@
+import json
 import os 
 import re
 from pykeepass import PyKeePass # pyright: ignore[reportMissingImports]
@@ -9,6 +10,7 @@ KEEPASS_DB_PATH = os.getenv("KEEPASS_DB_PATH")
 KEEPASS_KEY_PATH = os.getenv("KEEPASS_KEY_PATH")
 SITES = os.getenv("SITES","").split(',')
 SWITCH_REGEX = os.getenv("SWITCH_REGEX")
+SITE_MAPPING = json.loads(os.getenv("SITE_NAMES_MAPPING", "{}"))
 
 def open_database():
     return PyKeePass(
@@ -22,16 +24,17 @@ def get_all_switches():
     switches = {}
 
     for site in SITES:
-         # récupère **tous les groupes sous "Réseau"**
+         # récupère tous les groupes sous "Réseau"
         group = kp.find_groups(path=["Réseau", site], first=True)
         if not group:
             continue
 
-        switches[site] = []
+        site_name = SITE_MAPPING.get(site, site)
+        switches[site_name] = []
 
         for entry in group.entries:
             if re.match(SWITCH_REGEX, entry.title):
-                switches[site].append({
+                switches[site_name].append({
                     "title": entry.title,
                     "username": entry.username,
                     "password": entry.password,
